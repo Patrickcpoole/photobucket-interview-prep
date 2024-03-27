@@ -1,25 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import PhotoUploader from './components/PhotoUploader';
+import PhotoGallery from './components/PhotoGallery';
+import React, { useState} from 'react';
 
 function App() {
+
+  const [photos, setPhotos] = useState([]);
+
+  const handlePhotoUpload = (photo) => {
+    // Make a call to add photo to database
+
+    setPhotos(currentPhotos => [photo, ...currentPhotos])
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <body>
+        <h1>Photobucket interview prep</h1>
+        <PhotoUploader handlePhotoUpload={handlePhotoUpload}/>
+        <PhotoGallery photos={photos}/>
+      </body>
     </div>
   );
 }
 
 export default App;
+
+
+
+
